@@ -7,23 +7,21 @@ Este es un archivo temporal.
 import pandas as pd
 import numpy as np
 import math
-dt={'a':[1,5,4,56,4,45],'b':[1,5,6,6,4,5],'c':[3,5,4,23,4,78],'d':[3,5,5,3,4,4]}
-dtdf=pd.DataFrame(dt)
-dfdtnp=np.array(dtdf)
+
 class Estadis():
     def __init__(self,df):
-        self.dtdf=pd.DataFrame(df)
-        self.dfdtnp=np.array(dtdf)
+        self.dtdf = pd.DataFrame(df)
+        self.dfdtnp = np.array(self.dtdf)
         self.__x=['Media','Mínimo','Máximo','rango','Máximo/Mínimo','Varianza','numero de elementos']
         self.__y=['MEdia_elementos','VArainza_elementos','Covarianza elementos','Correlacion_elementos']
         self.__vector=[]
         self.inf=pd.DataFrame(np.zeros((4,7)),columns=self.__x,index=self.__y)
-    
+
     def varPorItem(self):
-        return np.array([np.var(self.dtdf.iloc[:,i:i+1]) for i in range(len(self.dtdf.T))]).reshape(len(self.dtdf.T),),np.array([np.var(self.dtdf.iloc[:,i:i+1]) for i in range(len(self.dtdf.T))]).reshape(len(self.dtdf.T),).sum
+        return np.array([np.var(self.dtdf.iloc[:,i:i+1]) for i in range(len(self.dtdf.T))])
 
     def calcularVarPorRegistro(self):
-        return np.array([np.sum(self.dfdtnp[i:i+1,:]) for i in range(len(self.dfdtnp))]),np.var([np.sum(self.dfdtnp[i:i+1,:]) for i in range(len(self.dfdtnp))])
+        return np.array([np.sum(self.dfdtnp[i:i+1,:]) for i in range(len(self.dfdtnp))])
     #totalPersona2,varTpersona2=calcularVarPorRegistro(dfdtnp)
     
     
@@ -76,7 +74,10 @@ class Estadis():
         self.__resucova()
         self.__resuCorre()
         return pd.DataFrame(self.__vector,columns=self.__x,index=self.__y)
-
+'''
+dt={'a':[1,5,4,56,4,45],'b':[1,5,6,6,4,5],'c':[3,5,4,23,4,78],'d':[3,5,5,3,4,4]}
+dtdf=pd.DataFrame(dt)
+dfdtnp=np.array(dtdf)
 p=Estadis(dt).varPorItem()[0]
 p1=Estadis(dt).calcularVarPorRegistro()[0]
 p2=Estadis(dt).corrIteTest()
@@ -87,3 +88,4 @@ p7=Estadis(dt).calcularCovarianza()
 p8=Estadis(dt).calcularCorrela()
 p6=Estadis(dt).calcularMedia()
 p10=Estadis(dt).mostrarResumen()
+'''
