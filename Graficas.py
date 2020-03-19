@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
+from Data import df
 
 dt={'a':[1,5,4,56,4,45],'b':[1,5,6,6,4,5],'c':[3,5,4,23,4,78],'d':[3,5,5,3,4,4]}
 dtdf=pd.DataFrame(dt)
