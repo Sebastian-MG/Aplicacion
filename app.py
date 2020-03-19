@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import math
 import csv
+import os
 import Estadistica
 app = Flask(__name__)
 
@@ -13,34 +14,28 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/upload.html', methods=['POST'])
-def upload_route_summary():
-    if request.method == 'POST':
-        # Create variable for uploaded file
-        f = request.files['fileupload']
 
-        # store the file contents as a string
-        fstring = f.read()
-
-        # create list of dictionaries keyed by header row
-        csv_dicts = [{k: v for k, v in row.items()} for row in
-                     csv.DictReader(fstring.splitlines(), skipinitialspace=True)]
-
-        # do something list of dictionaries
-    return "success"
 
 @app.route('/data',methods=['POST'])
 def data():
     if request.method == 'POST':
         df = pd.DataFrame(request.files['files'])
-        f = request.files["files"]
-        print(type(f))
-        fstring = f.read()
-        csv_dicts = [{k: v for k, v in row.items()} for row in csv.DictReader(fstring.splitlines(), skipinitialspace=True)]
-        df=pd.DataFrame(csv_dicts)
+        for i in range(len(df)):
+            f = str(df.iloc[i:i + 1, :])
+            if i>=1:
+
+                f=f.replace('\"', '')
+                f = f.replace('\'', '')
+                f = f.replace('b', '')
+                f= f.replace('\\', '')#\r\n'"
+                f = f.replace('r', '')
+            else:
+                nombres=f
 
 
-        df.to_csv('pruebaas.csv', index=False, sep=',')
+            print(f)
+
+        df.to_csv('pruebaas.csv', index=False)
 
         return 'hola'#render_template('visualizacion.html', data=df.to_html())
 @app.route('/InfoData')
