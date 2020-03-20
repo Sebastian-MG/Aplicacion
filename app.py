@@ -81,24 +81,30 @@ def data():
                                data=cv.to_html())
 
 
-@app.route('/ML.html', methods=['GET', 'POST'])
+@app.route('/ML.html', methods=['POST','GET'])
 def ml():
-    if request.method == 'POST':
-        r=pd.DataFrame(np.zeros((3,5)))
+    if request.method == 'POST'  :
+        mf = pd.DataFrame(np.zeros((3, 5)))
         dfc = pd.read_csv('pruebaas.csv', sep=',', header=None)
         cv = Arreglar.arre(dfc).reparaCSV()
-        sem=request.args.get('semilla') 
-        sem=request.args.get('pres') 
-        sem=request.args.get('tes') 
+        sem = request.form.get('semilla')
+        press = request.form.get('pres')
+        tess = request.form.get('tes')
         if request.form.get('ann'):
-            r, e = ML.Proceso(cv, 10, 0.3, 0.20, ML.Proceso.ann()).it()
+            mf, ps, rcs, f1sc, acs, s = ML.Proceso(cv, float(sem), float(press),float(tess), ML.Proceso.ann()).it()
         if request.form.get('knn'):
-            r, e = ML.Proceso(cv, 10, 0.3, 0.20, ML.Proceso.ann()).it()
+            mf, ps, rcs, f1sc, acs, s = ML.Proceso(cv,float(sem), float(press),float(tess), ML.Proceso.KNN()).it()
         if request.form.get('svc'):
-            r, e = ML.Proceso(cv, 10, 0.3, 0.20, ML.Proceso.ann()).it()
+            mf, ps, rcs, f1sc, acs, s = ML.Proceso(cv, float(sem), float(press),float(tess), ML.Proceso.svc()).it()
         if request.form.get('lg'):
-            r, e = ML.Proceso(cv, 10, 0.3, 0.20, ML.Proceso.ann()).it()                
-        return render_template('ML.html',data=pd.DataFrame(r).to_html())
+            mf, ps, rcs, f1sc, acs, s = ML.Proceso(cv, float(sem), float(press),float(tess), ML.Proceso.LG()).it()
+        return render_template('ML.html', data=pd.DataFrame(mf).to_html(),
+                               tables=[pd.DataFrame(ps).to_html(classes='data', header="true")],
+                               tables1=[pd.DataFrame(rcs).to_html(classes='data', header="true")],
+                               tables2=[pd.DataFrame(f1sc).to_html(classes='data', header="true")],
+                               tables3=[pd.DataFrame([acs,s],index=["acuary","score"]).to_html(classes='data', header="true")],)
+
+
 
 
 @app.route('/InfoData')
