@@ -26,11 +26,11 @@ class Estadis():
     
     
     def corrIteTest(self):
-        return np.array([np.corrcoef(self.dfdtnp[:,x:x+1].reshape(len(self.dfdtnp),),self.calcularVarPorRegistro()[0])[0,1] for x in range(len(self.dfdtnp.T))])
+        return np.array([np.corrcoef(self.dfdtnp[:,x:x+1].reshape(len(self.dfdtnp),),self.calcularVarPorRegistro())[0,1] for x in range(len(self.dfdtnp.T))])
     #indiceHomogeneidad=corrIteTest(dfdtnp,totalPersona2)
     
     def correIteTestCorreg(self):
-        return np.array([np.corrcoef(self.dfdtnp[:,x:x+1].reshape(len(self.dfdtnp),),self.calcularVarPorRegistro()[0]-self.dfdtnp[:,x:x+1].reshape(len(self.dfdtnp),))[0,1] for x in range(len(self.dfdtnp.T))])
+        return np.array([np.corrcoef(self.dfdtnp[:,x:x+1].reshape(len(self.dfdtnp),),self.calcularVarPorRegistro()-self.dfdtnp[:,x:x+1].reshape(len(self.dfdtnp),))[0,1] for x in range(len(self.dfdtnp.T))])
     #indicedeCorrelacionCorregi=correIteTestCorreg(dfdtnp,totalPersona2)
     
     def calculardesviacion(self):

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<form action="/index.html" , method="POST" , enctype="multipart/form-data">
+    <button type="submit"> regresar al inicio</button>
+</form>
+<form action="/Visualizacion.html" , method="POST" , enctype="multipart/form-data">
+    <button type="submit"> regresar vsualizacion</button>
+</form>
+<header>
+    <p>Enesta seccion se podra hacer pruebas de </p>
+    <p>machine learnig con 4 métodos diferentes </p>
+    <p>acontinuación escoja con el que quiera probar.</p>
+    
+    
+    <form action="/ML.html" , method="POST" , enctype="multipart/form-data">
+        <table class="ch">
+        <td><p>ann</p></td>
+        <td><p>knn</p></td>
+        <td><p>svc</p></td>
+        <td><p>lg</p></td>
+        <tr></tr>
+        <td><input type="checkbox" name="ann" value="matchwithpairs" ></td>
+        <td><input type="checkbox" name="knn" value="matchwithpairs" ></td>
+        <td><input type="checkbox" name="svc" value="matchwithpairs" ></td>
+        <td><input type="checkbox" name="lg" value="matchwithpairs" ></td>
+        
+        
+        
+        </table>
+        <table class="egt"> 
+        <td><p>el rago de la semilla será  </p>
+            <p> de o al número que usted </p>
+            <p>ingrese acontinuación:</p>
+        <input type="text" name="semilla"></td>
+        <td><p>Acontinuacion ingrese un valor para</p>
+            <p> la presició(score) dado el caso de que </p>
+            <p>en las itraciones con la semilla pueda </p>
+            <p>obtener un valor alto </p>
+            <p>(intente poner valores de score bajos</p>
+            <p> al principio).</p>
+        <input type="text" name="pres"></td>
+        <td><p>Igrese el porcentaje para que el programa </p>
+            <p>separeel porcentaje de la muestra que usted</p>
+            <p>desee para probar el algoritmo</p>
+        <input type="text" name="tes"></td>
+        <tr></tr>
+        <td><button type="submit"> procesar</button></td>
+        </table>
+    </form>
+   
+
+</header>
+<section class="resutl">
+ <div class="resutl1">
+       {%block conten %}
+            {{ data|safe }}
+        {% endblock %}
+    </div>
+
+</section>
+<section>
+
+</section>
+
+<footer>
+
+</footer>
+
+</body>
+</html>

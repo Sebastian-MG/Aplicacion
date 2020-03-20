@@ -1,29 +1,73 @@
 <!DOCTYPE html>
 <html lang="es">
-	<head>
-
-		<title>Inicio $:</title>
-
-
-	</head>
-	<body>
-		<header>
-
-		</header>
+<head>
+    <meta charset="utf-8">
 
 
-		<section>
+    <title>Inicio $:</title>
 
-           <div class="table">
-        {% block body %}
-        {{ data|safe }}
+
+</head>
+<body>
+
+
+<form action="/ML.html" , method="POST" , enctype="multipart/form-data">
+    <button type="submit"> Probar machine learnig</button>
+</form>
+<form action="/index.html" , method="POST" , enctype="multipart/form-data">
+    <button type="submit"> regresar al inicio</button>
+</form>
+<header>
+
+
+</header>
+<section class="resutl">
+    <p> los resultandos del csv ingresado son </p>
+    <p> Varianza</p>
+    <div class="resutl1">
+        {% for table in tables %}
+            {{ table|safe }}
+        {% endfor %}
+    </div>
+    <p>Amtriz de correlacion</p>
+    <div class="resutl3">
+        {% for table3 in tables3 %}
+            {{ table3|safe }}
+        {% endfor %}
+    </div>
+    <p> índice de Homogenedidad</p>
+    <div class="resutl2">
+        {% for table1 in tables1 %}
+            {{ table1|safe }}
+        {% endfor %}
+    </div>
+
+    <p> índice de Homogenedidad corregido</p>
+    <div class="table3">
+        {% for table2 in tables2 %}
+            {{ table2|safe }}
+        {% endfor %}
+    </div>
+    <p> Resumen</p>
+    <div class="table4">
+        {% for table4 in tables4 %}
+            {{ table4|safe }}
+        {% endfor %}
+    </div>
+</section>
+<section>
+    <p>Dataset ingresado</p>
+    <div class="table">
+        {% block content %}
+            {{ data|safe }}
         {% endblock %}
-        </div>
+    </div>
 
-		</section>
-	<footer align= "left" >
-			<pre>asdasdasdasdasdasdasd
-			</pre>
-		</footer >
-	</body>
+</section>
+
+<footer>
+
+</footer>
+
+</body>
 </html>
