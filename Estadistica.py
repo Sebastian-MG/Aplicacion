@@ -77,6 +77,15 @@ class Estadis():
     def mostrarSal(self):
 
         return sorted(pd.unique(np.array(self.yy.copy()).reshape(len(self.yy))).tolist())
+
+class resultados():
+    def __init__(self,maCon):
+        self.df=maCon
+    def diagonal(self):
+        return self.df.diagonal().sum()
+    def sumat(self):
+        return self.df.sum()
+
 '''
 dt={'a':[1,5,4,56,4,45],'b':[1,5,6,6,4,5],'c':[3,5,4,23,4,78],'d':[3,5,5,3,4,4]}
 dtdf=pd.DataFrame(dt)

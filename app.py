@@ -94,10 +94,11 @@ def ml():
         sem = request.form.get('semilla')
         press = request.form.get('pres')
         tess = request.form.get('tes')
-        pred=request.form.get('pred')
-        separapre=pred.split(',')
+        predV=request.form.get('pred')
+        separapre=predV.split(',')
+        print(sal[0:len(sal)-1])
         predicc=pd.DataFrame(separapre).astype('float')
-
+        print(predicc)
         if request.form.get('ann'):
             mf, ps, rcs, f1sc, acs, s,pred = ML.Proceso(cv, float(sem), float(press),float(tess), ML.Proceso.ann(),predicc.T).it()
         if request.form.get('knn'):
@@ -107,13 +108,15 @@ def ml():
         if request.form.get('lg'):
             mf, ps, rcs, f1sc, acs, s,pred = ML.Proceso(cv, float(sem), float(press),float(tess), ML.Proceso.LG(),predicc.T).it()
 
+
         return render_template('ML.html', data=pd.DataFrame(mf,columns=sal,index=sal).to_html(classes='data', header="true"),
                                tables=[pd.DataFrame(ps,index=sal,columns=['ps']).to_html(classes='data', header="true")],
                                tables1=[pd.DataFrame(rcs,index=sal,columns=['rs']).to_html(classes='data', header="true")],
                                tables2=[pd.DataFrame(f1sc,index=sal,columns=['f1']).to_html(classes='data', header="true")],
                                tables3=[pd.DataFrame([acs,s],index=["acuary","score"],columns=['a-s']).to_html(classes='data', header="true")],
-                               val=[pd.DataFrame([predicc],columns=sal).to_html(classes='data', header="true")]
-                               ,str1="sin datos")
+                               val=[pd.DataFrame(separapre,index=cv.columns[0:len(cv.columns)-1],columns=['datos de entrada']).to_html(classes='data', header="true")]
+                               ,str1=pred,valoracu=acs,valorsco=s,diago=Estadistica.resultados(mf).diagonal(),
+                               t=Estadistica.resultados(mf).sumat())
     except:
         return render_template('ML.html',
                                data=pd.DataFrame(mf).to_html(classes='data', header="true"),
@@ -126,7 +129,7 @@ def ml():
                                tables3=[pd.DataFrame([acs, s]).to_html(
                                    classes='data', header="true")],
                                val=[pd.DataFrame([acs, s]).to_html(classes='data', header="true")]
-                               , str1="sin datos")
+                               , str1="sin datos",valoracu=0,valorsco=0,diago=0,t=0)
 
 
 
