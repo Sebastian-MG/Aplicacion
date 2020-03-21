@@ -16,7 +16,7 @@ class Estadis():
         self.__y=['MEdia_elementos','VArainza_elementos','Covarianza elementos','Correlacion_elementos']
         self.__vector=[]
         self.inf=pd.DataFrame(np.zeros((4,7)),columns=self.__x,index=self.__y)
-
+        self.yy = df.iloc[:, len(df.T) - 1: len(df.T)]
     def varPorItem(self):
         return np.array([np.var(self.dtdf.iloc[:,i:i+1]) for i in range(len(self.dtdf.T))])
 
@@ -74,6 +74,9 @@ class Estadis():
         self.__resucova()
         self.__resuCorre()
         return pd.DataFrame(self.__vector,columns=self.__x,index=self.__y)
+    def mostrarSal(self):
+
+        return sorted(pd.unique(np.array(self.yy.copy()).reshape(len(self.yy))).tolist())
 '''
 dt={'a':[1,5,4,56,4,45],'b':[1,5,6,6,4,5],'c':[3,5,4,23,4,78],'d':[3,5,5,3,4,4]}
 dtdf=pd.DataFrame(dt)

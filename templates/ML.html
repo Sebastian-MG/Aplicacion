@@ -20,7 +20,7 @@
             <td><p>svc</p></td>
             <td><p>lg</p></td>
             <tr></tr>
-            <td><input type="checkbox" name="ann" value="matchwithpairs"></td>
+            <td><input type="checkbox" name="ann" value="matchwithpairs" checked></td>
             <td><input type="checkbox" name="knn" value="matchwithpairs"></td>
             <td><input type="checkbox" name="svc" value="matchwithpairs"></td>
             <td><input type="checkbox" name="lg" value="matchwithpairs"></td>
@@ -31,64 +31,106 @@
 
             <td><p>el rago de la semilla será </p>
                 <p> de o al número que usted </p>
-                <p>ingrese acontinuación:</p>
-                <input type="text" name="semilla" value=10></td>
+                <p>ingrese acontinuación:</p></td>
+            <td><input type="text" name="semilla" value=10></td>
+            <tr></tr>
             <td><p>Acontinuacion ingrese un valor para</p>
                 <p> la presició(score) dado el caso de que </p>
                 <p>en las itraciones con la semilla pueda </p>
                 <p>obtener un valor alto </p>
                 <p>(intente poner valores de score bajos</p>
-                <p> al principio).</p>
-                <input type="text" name="pres" value=0.5></td>
+                <p> al principio).</p></td>
+            <td><input type="text" name="pres" value=0.5></td>
+            <tr></tr>
             <td><p>Igrese el porcentaje para que el programa </p>
-                <p>separeel porcentaje de la muestra que usted</p>
-                <p>desee para probar el algoritmo</p>
-                <input type="text" name="tes" value=0.2></td>
+                <p>separe el porcentaje de la muestra que usted</p>
+                <p>desee para probar el algoritmo</p></td>
+            <td><input type="text" name="tes" value=0.2></td>
+            <tr></tr>
+            <td><p>Igrese los valores de entrada</p>
+                <p> que desea predecir los valores</p>
+                <p>deben estar separados por comas</p>
+            </td>
+            <td><input type="text" name="pred" value=0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5></td>
             <tr></tr>
             <td>
                 <button type="submit"> procesar</button>
             </td>
 
         </table>
+        <label>  {{ str1|string }} </label>
     </form>
 
 
 </header>
 <section class="resutl">
-    <div class="resutl1">
-        {% block conten %}
-            {{ data|safe }}
-        {% endblock %}
-    </div>
-    <div class="table">
-        {% if table != None %}
-            {% for table in tables %}
-                {{ table|safe }}
-            {% endfor %}
-        {% endif %}
-    </div>
-    <div class="table1">
-        {% if table1 != None %}
-            {% for table1 in tables1 %}
-                {{ table1|safe }}
-            {% endfor %}
-        {% endif %}
-    </div>
-    <div class="table2">
-        {% if table2 != None %}
-            {% for table2 in tables2 %}
-                {{ table2|safe }}
-            {% endfor %}
-        {% endif %}
-    </div>
-    <div class="table3">
-        {% if table3 != None %}
-            {% for table3 in tables3 %}
-                {{ table3|safe }}
-            {% endfor %}
-        {% endif %}
-    </div>
-
+    <table>
+        <td>Matriz de confusión</td>
+        <td>Presicion score</td>
+        <tr></tr>
+        <td>
+            <div class="resutl1">
+                {% block conten %}
+                    {{ data|safe }}
+                {% endblock %}
+            </div>
+        </td>
+        <td>
+            <div class="table">
+                {% if table != None %}
+                    {% for table in tables %}
+                        {{ table|safe }}
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </td>
+        <tr></tr>
+        <td>recall</td>
+        <td>fi</td>
+        <tr></tr>
+        <td>
+            <div class="table1">
+                {% if table1 != None %}
+                    {% for table1 in tables1 %}
+                        {{ table1|safe }}
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </td>
+        <td>
+            <div class="table2">
+                {% if table2 != None %}
+                    {% for table2 in tables2 %}
+                        {{ table2|safe }}
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </td>
+        <tr></tr>
+        <td>Acuary y score</td>
+        <td></td>
+        <tr></tr>
+        <td>
+            <div class="table3">
+                {% if table3 != None %}
+                    {% for table3 in tables3 %}
+                        {{ table3|safe }}
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </td>
+        <td></td>
+    </table>
+    <table>
+        <td>Resultados de la predicción</td>
+        <td>
+            <div class="table3">
+                {% if val != None %}
+                    {% for val in val %}
+                        {{ val|safe }}
+                    {% endfor %}
+                {% endif %}</td>
+    </table>
 </section>
 <section>
 

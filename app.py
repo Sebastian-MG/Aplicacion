@@ -83,27 +83,50 @@ def data():
 
 @app.route('/ML.html', methods=['POST','GET'])
 def ml():
-    if request.method == 'POST'  :
-        mf = pd.DataFrame(np.zeros((3, 5)))
+    mf, ps, rcs, f1sc, acs, s = pd.DataFrame(np.zeros((3, 5))), pd.DataFrame(np.zeros((3, 5))), pd.DataFrame(
+        np.zeros((3, 5))), pd.DataFrame(np.zeros((3, 5))), pd.DataFrame(np.zeros((3, 5))), pd.DataFrame(
+        np.zeros((3, 5)))
+    try:
+
         dfc = pd.read_csv('pruebaas.csv', sep=',', header=None)
         cv = Arreglar.arre(dfc).reparaCSV()
+        sal = Estadistica.Estadis(cv).mostrarSal()
         sem = request.form.get('semilla')
         press = request.form.get('pres')
         tess = request.form.get('tes')
-        if request.form.get('ann'):
-            mf, ps, rcs, f1sc, acs, s = ML.Proceso(cv, float(sem), float(press),float(tess), ML.Proceso.ann()).it()
-        if request.form.get('knn'):
-            mf, ps, rcs, f1sc, acs, s = ML.Proceso(cv,float(sem), float(press),float(tess), ML.Proceso.KNN()).it()
-        if request.form.get('svc'):
-            mf, ps, rcs, f1sc, acs, s = ML.Proceso(cv, float(sem), float(press),float(tess), ML.Proceso.svc()).it()
-        if request.form.get('lg'):
-            mf, ps, rcs, f1sc, acs, s = ML.Proceso(cv, float(sem), float(press),float(tess), ML.Proceso.LG()).it()
-        return render_template('ML.html', data=pd.DataFrame(mf).to_html(),
-                               tables=[pd.DataFrame(ps).to_html(classes='data', header="true")],
-                               tables1=[pd.DataFrame(rcs).to_html(classes='data', header="true")],
-                               tables2=[pd.DataFrame(f1sc).to_html(classes='data', header="true")],
-                               tables3=[pd.DataFrame([acs,s],index=["acuary","score"]).to_html(classes='data', header="true")],)
+        pred=request.form.get('pred')
+        separapre=pred.split(',')
+        predicc=pd.DataFrame(separapre).astype('float')
 
+        if request.form.get('ann'):
+            mf, ps, rcs, f1sc, acs, s,pred = ML.Proceso(cv, float(sem), float(press),float(tess), ML.Proceso.ann(),predicc.T).it()
+        if request.form.get('knn'):
+            mf, ps, rcs, f1sc, acs, s ,pred= ML.Proceso(cv,float(sem), float(press),float(tess), ML.Proceso.KNN(),predicc.T).it()
+        if request.form.get('svc'):
+            mf, ps, rcs, f1sc, acs, s,pred = ML.Proceso(cv, float(sem), float(press),float(tess), ML.Proceso.svc(),predicc.T).it()
+        if request.form.get('lg'):
+            mf, ps, rcs, f1sc, acs, s,pred = ML.Proceso(cv, float(sem), float(press),float(tess), ML.Proceso.LG(),predicc.T).it()
+
+        return render_template('ML.html', data=pd.DataFrame(mf,columns=sal,index=sal).to_html(classes='data', header="true"),
+                               tables=[pd.DataFrame(ps,index=sal,columns=['ps']).to_html(classes='data', header="true")],
+                               tables1=[pd.DataFrame(rcs,index=sal,columns=['rs']).to_html(classes='data', header="true")],
+                               tables2=[pd.DataFrame(f1sc,index=sal,columns=['f1']).to_html(classes='data', header="true")],
+                               tables3=[pd.DataFrame([acs,s],index=["acuary","score"],columns=['a-s']).to_html(classes='data', header="true")],
+                               val=[pd.DataFrame([predicc],columns=sal).to_html(classes='data', header="true")]
+                               ,str1="sin datos")
+    except:
+        return render_template('ML.html',
+                               data=pd.DataFrame(mf).to_html(classes='data', header="true"),
+                               tables=[
+                                   pd.DataFrame(ps).to_html(classes='data', header="true")],
+                               tables1=[
+                                   pd.DataFrame(rcs).to_html(classes='data', header="true")],
+                               tables2=[pd.DataFrame(f1sc).to_html(classes='data',
+                                                                                              header="true")],
+                               tables3=[pd.DataFrame([acs, s]).to_html(
+                                   classes='data', header="true")],
+                               val=[pd.DataFrame([acs, s]).to_html(classes='data', header="true")]
+                               , str1="sin datos")
 
 
 
