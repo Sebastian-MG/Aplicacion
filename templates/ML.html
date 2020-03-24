@@ -1,177 +1,164 @@
 <!DOCTYPE html>
-<html lang="es">
-
-<form action="/index.html" , method="POST" , enctype="multipart/form-data">
-    <button type="submit"> regresar al inicio</button>
-</form>
-<form action="/Visualizacion.html" , method="POST" , enctype="multipart/form-data">
-    <button type="submit"> regresar vsualizacion</button>
-</form>
-<header>
-
-    <p>Enesta seccion se podra hacer pruebas de </p>
-    <p>machine learnig con 4 métodos diferentes </p>
-    <p>acontinuación escoja con el que quiera probar.</p>
-
-
-    <form action="/ML.html" , method="POST" , enctype="multipart/form-data">
-        <table class="ch">
-            <td><p>ann</p></td>
-            <td><p>knn</p></td>
-            <td><p>svc</p></td>
-            <td><p>lg</p></td>
-            <tr></tr>
-            <td><input type="checkbox" name="ann" value="matchwithpairs" checked></td>
-            <td><input type="checkbox" name="knn" value="matchwithpairs"></td>
-            <td><input type="checkbox" name="svc" value="matchwithpairs"></td>
-            <td><input type="checkbox" name="lg" value="matchwithpairs"></td>
-
-
-        </table>
-        <table class="egt">
-
-            <td><p>el rago de la semilla será </p>
-                <p> de o al número que usted </p>
-                <p>ingrese acontinuación:</p></td>
-            <td><input type="text" name="semilla" value=10></td>
-            <tr></tr>
-            <td><p>Acontinuacion ingrese un valor para</p>
-                <p> la presició(score) dado el caso de que </p>
-                <p>en las itraciones con la semilla pueda </p>
-                <p>obtener un valor alto </p>
-                <p>(intente poner valores de score bajos</p>
-                <p> al principio).</p></td>
-            <td><input type="text" name="pres" value=0.5></td>
-            <tr></tr>
-            <td><p>Igrese el porcentaje para que el programa </p>
-                <p>separe el porcentaje de la muestra que usted</p>
-                <p>desee para probar el algoritmo</p></td>
-            <td><input type="text" name="tes" value=0.2></td>
-            <tr></tr>
-            <td><p>Igrese los valores de entrada</p>
-                <p> que desea predecir los valores</p>
-                <p>deben estar separados por comas</p>
-            </td>
-            <td><input type="text" name="pred" value=0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5></td>
-            <tr></tr>
-            <td>
-                <button type="submit"> procesar</button>
-            </td>
-
-        </table>
-
-    </form>
-
-
-</header>
-<section class="resutl">
-    <table>
-        <td>Matriz de confusión</td>
-        <td>Presicion score</td>
-        <td>recall</td>
-        <td>fi</td>
-        <tr></tr>
-        <td>
-            <img src="{{ url_for('static', filename='image/mf.png') }}" alt="fondo">
-        </td>
-        <td><img src="{{ url_for('static', filename='image/pres.png') }}" alt="fondo"></td>
-        <td><img src="{{ url_for('static', filename='image/re.png') }}" alt="fondo"></td>
-        <td><img src="{{ url_for('static', filename='image/f1.png') }}" alt="fondo"></td>
-        <tr></tr>
-        <td>
-            <div class=" resutl1">
-            {% block conten %}
-                {{ data|safe }}
-            {% endblock %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/styles.css') }}">
+    <link rel="icon" href="url_for('static', filename = 'image/favicon.ico')">
+    <title>Machine Learning</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h3>Machine</h3>
+        </div>
+    </header>
+    <!-- ARTICLE AND ASIDE -->
+    <div class="container">
+        <section class="main row">
+            <article class="col-xs-12 col-s-6 col-md-7">
+                <p>
+                <h3>¿Qué es Machine Learning?</h3>
+                <p>Machine Learning es una disciplina científica del ámbito de la Inteligencia Artificial que crea sistemas que aprenden automáticamente. Aprender en este contexto quiere decir identificar patrones complejos en millones de datos. La máquina que realmente aprende es un algoritmo que revisa los datos y es capaz de predecir comportamientos futuros.</p>                
+                </p>
+            </article>
+        </section>
+        <!-- Formulario -->
+        <div class="row">             
+            <div class="col-md-6 color1">
+                <form action="/ML.html" , method="POST" , enctype="multipart/form-data" class="col-md-6"></form>                                
+                    <br>
+                    <div class="form-group">
+                        <label for="semilla">Rango de la semilla desde 0 hasta: </label>
+                        <input class="form-control" type="number" name="semilla" id="semilla" value="10">
+                    </div>
+                    <div class="form-group">
+                        <label for="semilla">Valor para el score: </label>   
+                        <input class="form-control" type="number" name="pres" value=0.5 id="pres">
+                    </div>
+                    <div class="form-group">
+                        <label for="semilla">Porcentaje para separar la muestra: </label>   
+                        <input class="form-control" type="number" name="tes" value=0.2 max="1" id="tes">
+                    </div>
+                    <div class="form-group">
+                        <label for="semilla">Valores de entrada para predecir: </label>   
+                        <input class="form-control" type="text" name="pred" value=0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5 id="pres">
+                    </div>
+                    <br>               
             </div>
-        </td>
-        <td>
-            <div class="table">
-
-                {% for table in tables %}
+            <div class="col-md-6 color1"><br>
+                <!-- CHECKBOX -->
+                <label for="ann">Red neuronal artificial (ann)</label>
+                <input type="checkbox" id="ann" name="ann" value="matchwithpairs" checked><br>
+                <label for="knn">Vecinos más cercanos</label>
+                <input type="checkbox" id="knn" name="knn" value="matchwithpairs"><br>
+                <label for="svc">Vectores de soporte</label>
+                <input type="checkbox" id="svc" name="svc" value="matchwithpairs"><br>
+                <label for="lg">Regresión logística</label>
+                <input type="checkbox" id="lg" name="lg" value="matchwithpairs"><br>                    
+                <!-- END CHECKBOX -->                    
+                <button type="submit" class="btn btn-warning center-block">Procesar</button>
+            </form>
+            </div>
+        </div>        
+        <div class="row">
+            <div class="col-md-3 color2"><br>                
+                <h5>Matriz de confusión: </h5>
+                <p>En el campo de la inteligencia artificial una matriz de confusión es una herramienta que permite la visualización del desempeño de un algoritmo que se emplea en aprendizaje supervisado. Cada columna de la matriz representa el número de predicciones de cada clase, mientras que cada fila representa a las instancias en la clase real. Uno de los beneficios de las matrices de confusión es que facilitan ver si el sistema está confundiendo dos clases.</p>
+                <img src="{{ url_for('static', filename='image/mf.png') }} " alt="fondo" class="img-thumbnail">
+            </div>
+            <div class="col-md-3 color3"><br>
+                <h5>Score (precisión): </h5>
+                <p>Con la métrica de precisión podemos medir la calidad del modelo de machine learning en tareas de clasificación. En el ejemplo, se refiere a que la precisión es la respuesta a la pregunta ¿qué porcentaje de los clientes que contactemos estarán interesados.</p>
+                <img src="{{ url_for('static', filename='image/pres.png') }} " alt="fondo" class="img-thumbnail">
+            </div>
+            <div class="col-md-3 color2"><br>
+                <h5>Recall: </h5>
+                <p>La métrica de exhaustividad nos va a informar sobre la cantidad que el modelo de machine learning es capaz de identificar. En el ejemplo, se refiere a que la exhaustividad (recall) es la respuesta a la pregunta ¿qué porcentaje de los clientes están interesados somos capaces de identificar.</p>
+                <img src="{{ url_for('static', filename='image/re.png') }} " alt="fondo" class="img-thumbnail">
+            </div>
+            <div class="col-md-3 color3"><br>
+                <h5>F1: </h5>
+                <p>El valor F1 se utiliza para combinar las medidas de precision y recall en un sólo valor. Esto es práctico porque hace más fácil el poder comparar el rendimiento combinado de la precisión y la exhaustividad entre varias soluciones.</p>
+                <img src="{{ url_for('static', filename='image/f1.png') }} " alt="fondo" class="img-thumbnail">
+            </div>
+        </div>
+        <!--  TABLES  -->
+        <div class="row row-tables-ml">
+            <div class="col-md-3 color1"><br>
+                <h5>Matriz de confusión:</h5>
+                <table class="tables-resul">
+                    {% block conten %}
+                    {{ data|safe }}
+                    {% endblock %}
+                </table>
+            </div>
+            <div class="col-md-3 color1"><br>
+                <h5>Precisión:</h5>
+                <table class="tables-resul">
+                    {% for table in tables %}
                     {{ table|safe }}
-                {% endfor %}
-
+                    {% endfor %}
+                </table>
             </div>
-        </td>
-
-
-        <td>
-            <div class="table1">
-
-                {% for table1 in tables1 %}
+            <div class="col-md-3 color1"><br>
+                <h5>Recall:</h5>
+                <table class="tables-resul">
+                    {% for table1 in tables1 %}
                     {{ table1|safe }}
-                {% endfor %}
-
+                    {% endfor %}
+                </table>                    
             </div>
-        </td>
-        <td>
-            <div class="table2">
-
-                {% for table2 in tables2 %}
+            <div class="col-md-3 color1"><br>
+                <h5>F1:</h5>
+                <table class="tables-resul">
+                    {% for table2 in tables2 %}
                     {{ table2|safe }}
-                {% endfor %}
-
+                    {% endfor %}
+                </table>
             </div>
-        </td>
-        <tr></tr>
-
-        <td></td>
-        <tr></tr>
-
-
-    </table>
-    <table>
-        <td> Acuary y score
-            <div class="table3">
-
-                {% for table3 in tables3 %}
+        </div>
+        <div class="row final-row">
+            <div class="col-md-6 color2"><br>
+                <h5>Acuary & Score</h5>
+                <table class="tables-resul">
+                    {% for table3 in tables3 %}
                     {{ table3|safe }}
-                {% endfor %}
-
+                    {% endfor %}
+                </table class="tables-resul">
             </div>
-        </td>
-        <td>
-            <div class="table3">
-
-                {% for val in val %}
+            <div class="col-md-6 color2"><br>
+                <h5>Resultados: </h5>
+                <table class="tables-resul">
+                    {% for val in val %}
                     {{ val|safe }}
-                {% endfor %}
+                    {% endfor %}
+                </table>
             </div>
-        </td>
-        <td>
-            <table>
-                <td>Resultado dela predicción:<br>
-
-                </td>
-                <td><label>  {{ str1|string }} </label></td>
-                <tr></tr>
-                <td>
-                    {% if valoracu|int,valorsco|int < 0.70 %}
-                        <p> no es muy confiable el método pruebe ota </p>
-                        <p>configuración.</p>
-
-                    {% else %}
-                        <p> si es menor a 90 podria </p>
-                        <p> mejorarlo, pero es </p>
-                        <p> confiable</p>
-                    {% endif %}
-                    <p>De todos los datos del test {{ t|float }} acertaron {{ diago|float }},</p>
-
-                    <p> {{ t|float-diago|float }} son desaciertos </p>
-
-                </td>
-            </table>
-        <td>
-    </table>
-</section>
-<section>
-
-</section>
-
-<footer>
-
-</footer>
-
+        </div>        
+    </div>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 segment-one">
+                        <h4>Desarrolladores: </h4>
+                        <p>Andres Mateo Nariño Rodríguez</p>
+                        <p>Juan Sebastian Martinez Zabala</p>
+                        <p>Juan Sebastian Mancera</p>
+                    </div>
+                    <div class="col-md-6 segment two">
+                        <h4>Contacto: </h4>
+                        <p>narinomateo2119@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--BOOTSTRAP Y JQUERY-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -1,38 +1,82 @@
 <!DOCTYPE html>
-<html lang="es">
-	<head>
-		<meta charset="utf-8">
-		<title>Grupo de trabajo</title>
-
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-
-	</head>
-	<body>
-
-		<header>
-			<h1>inicio  </h1>
-		</header>
-
-
-		<nav>
-
-
-		</nav>
-		<section>
-            <p>por favor los nombres de las comunas no deben ir con caractertes especiales</p>
-	    <form action="/Visualizacion.html", method="POST", enctype="multipart/form-data">
-        <input type="file" name="files" class="form-control" accept=".csv" required />
-        <button type="submit"> Subir</button>
-        </form>
-
-
-		</section>
-
-		<footer align= "left" >
-			<pre>asdasdasd
-			</pre>
-		</footer >
-
-	</body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/styles.css') }}">
+    <link rel="icon" href=" {{ url_for('static', filename = 'image/favicon.ico') }}">
+    <title>Modelos2</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Proyecto final - Modelos de programación 2.</h1>
+        </div>
+    </header>
+    <div class="container">
+        <section class="main row">
+            <article class="col-xs-12 col-s-8 col-md-9">
+                <p>
+                <h3>De que se trata:</h3>
+                   Este proyecto busca que mediante el ingreso de un archivo CSV
+                   se le apliquen metodos de machine learning y...
+                </p>
+            </article>
+            <aside class="col-xs-12 col-s-4 col-md-3">
+                <p>
+                <h3>Ejemplo</h3>
+                Aqui hay un ejemplo de la implementación de los algoritmos.
+                </p>
+                <a href="visualization.html"><img src="{{url_for('static', filename = 'image/ejemplo.png') }} " alt="img-paint" class="img-thumbnail"></a>
+            </aside>
+        </section>
+        <!-- SEDUNDA FILA -->
+        <div class="row final-row">
+            <div class="col-xs-12 col-sm-12 col-md-6 color1">
+                <p>
+                <h3>Sube tu CSV</h3>
+                    <form action="/visualization.html", method="POST", enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="user-csv">Archivo: </label>
+                            <input type="file" name="files" id="user-csv" class="form-control-file" accept=".csv" required>
+                        </div>
+                    <button type="submit"> Subir</button>
+                </p>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 color2">
+                <p> <h3> Columnas </h3>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non qui nobis blanditiis voluptatem minima necessitatibus ullam amet, eligendi ad saepe eum aliquid aspernatur eius similique. Voluptate iste nostrum ducimus deleniti?
+                </p>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 color1">
+                <p> <h3> Columnas </h3>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non qui nobis blanditiis voluptatem minima necessitatibus ullam amet, eligendi ad saepe eum aliquid aspernatur eius similique. Voluptate iste nostrum ducimus deleniti?
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 segment-one">
+                        <h4>Desarrolladores: </h4>
+                        <p>Andres Mateo Nariño Rodríguez</p>
+                        <p>Juan Sebastian Martinez Zabala</p>
+                        <p>Juan Sebastian Mancera</p>
+                    </div>
+                    <div class="col-md-6 segment two">
+                        <h4>Contacto: </h4>
+                        <p>narinomateo2119@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- BOOTSTRAP AND JQUERY-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
 </html>
-
