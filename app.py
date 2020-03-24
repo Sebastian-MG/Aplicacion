@@ -21,7 +21,7 @@ def rindex():
         return render_template('index.html')
 
 
-@app.route('/Visualizacion.html', methods=['GET', 'POST'])
+@app.route('/visualization.html', methods=['GET', 'POST'])
 def data():
     try:
         df = pd.DataFrame(request.files['files'])
@@ -45,7 +45,7 @@ def data():
         print(p3)
         print(p9)
 
-        return render_template('Visualizacion.html', tables=[p.to_html(classes='data', header="true")],
+        return render_template('visualization.html', tables=[p.to_html(classes='data', header="true")],
                                tables1=[pd.DataFrame(p2.T, index=cv.columns, columns=['IH']).to_html(classes='data',
                                                                                                      header="true")],
                                tables2=[pd.DataFrame(p3.T, index=cv.columns, columns=['IHC']).to_html(classes='data',
@@ -70,7 +70,7 @@ def data():
         p8 = Estadistica.Estadis(cv).calcularCorrela()
         Estadistica.Estadis(cv).calcularMedia()
         p9 = Estadistica.Estadis(cv).mostrarResumen()
-        return render_template('Visualizacion.html', tables=[p.to_html(classes='data', header="true")],
+        return render_template('visualization.html', tables=[p.to_html(classes='data', header="true")],
                                tables1=[pd.DataFrame(p2.T, index=cv.columns, columns=['IH']).to_html(classes='data',
                                                                                                      header="true")],
                                tables2=[pd.DataFrame(p3.T, index=cv.columns, columns=['IHC']).to_html(classes='data',
@@ -139,4 +139,4 @@ def infodata():
 
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+    app.run(port=9090, debug=True)
