@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/styles.css') }}">
-    <link rel="icon" href="url_for('static', filename = 'image/favicon.ico')">
+    <link rel="icon" href=" {{ url_for('static', filename = 'image/favicon.ico') }}">
     <title>Machine Learning</title>
 </head>
 <body>
     <header>
         <div class="container">
-            <h3>Machine</h3>
+            <h2>Proyecto final - Modelos de programación 2.</h2>
         </div>
     </header>
     <!-- ARTICLE AND ASIDE -->
@@ -27,7 +27,7 @@
         <!-- Formulario -->
         <div class="row">             
             <div class="col-md-6 color1">
-                <form action="/ML.html" , method="POST" , enctype="multipart/form-data" class="col-md-6"></form>                                
+                <form action="/ML.html" , method="POST" , enctype="multipart/form-data" class="col-md-6">                              
                     <br>
                     <div class="form-group">
                         <label for="semilla">Rango de la semilla desde 0 hasta: </label>
@@ -51,11 +51,11 @@
                 <!-- CHECKBOX -->
                 <label for="ann">Red neuronal artificial (ann)</label>
                 <input type="checkbox" id="ann" name="ann" value="matchwithpairs" checked><br>
-                <label for="knn">Vecinos más cercanos</label>
+                <label for="knn">Vecinos más cercanos (knn)</label>
                 <input type="checkbox" id="knn" name="knn" value="matchwithpairs"><br>
-                <label for="svc">Vectores de soporte</label>
+                <label for="svc">Vectores de soporte (svc)</label>
                 <input type="checkbox" id="svc" name="svc" value="matchwithpairs"><br>
-                <label for="lg">Regresión logística</label>
+                <label for="lg">Regresión logística (lg)</label>
                 <input type="checkbox" id="lg" name="lg" value="matchwithpairs"><br>                    
                 <!-- END CHECKBOX -->                    
                 <button type="submit" class="btn btn-warning center-block">Procesar</button>
@@ -88,7 +88,7 @@
         <div class="row row-tables-ml">
             <div class="col-md-3 color1"><br>
                 <h5>Matriz de confusión:</h5>
-                <table class="tables-resul">
+                <table class="table border-wh">
                     {% block conten %}
                     {{ data|safe }}
                     {% endblock %}
@@ -96,15 +96,15 @@
             </div>
             <div class="col-md-3 color1"><br>
                 <h5>Precisión:</h5>
-                <table class="tables-resul">
+                <table class="table">
                     {% for table in tables %}
-                    {{ table|safe }}
+                    {{ table|safe }}              
                     {% endfor %}
                 </table>
             </div>
             <div class="col-md-3 color1"><br>
                 <h5>Recall:</h5>
-                <table class="tables-resul">
+                <table class="table">
                     {% for table1 in tables1 %}
                     {{ table1|safe }}
                     {% endfor %}
@@ -112,29 +112,44 @@
             </div>
             <div class="col-md-3 color1"><br>
                 <h5>F1:</h5>
-                <table class="tables-resul">
+                <table class="table">
                     {% for table2 in tables2 %}
                     {{ table2|safe }}
                     {% endfor %}
                 </table>
             </div>
         </div>
-        <div class="row final-row">
+        <div class="row">
             <div class="col-md-6 color2"><br>
                 <h5>Acuary & Score</h5>
-                <table class="tables-resul">
+                <table class="table">
                     {% for table3 in tables3 %}
                     {{ table3|safe }}
                     {% endfor %}
-                </table class="tables-resul">
+                </table>
             </div>
             <div class="col-md-6 color2"><br>
                 <h5>Resultados: </h5>
-                <table class="tables-resul">
+                <table class="table">
                     {% for val in val %}
                     {{ val|safe }}
                     {% endfor %}
                 </table>
+            </div>
+        </div>
+        <div class="row  final-row center-block">
+            <div class="col-md-12 color1">
+               <h5>Resultados de la predicción:</h5> 
+                	{{ str1|string }}
+                    {% if valoracu|int,valorsco|int < 0.70 %}
+                     <p>No es muy confiable el método pruebe otra configuración.</p>
+                    {% else %}
+                    <p>Si es menor a 90 podría mejorar.</p>
+                    {% endif %}
+                    <p>
+                    De todos los datos del test: ({{ t|float }}) hay ({{ diago|float }}) aciertos: y
+                    ({{ t|float-diago|float }}) desaciertos:
+                	</p>
             </div>
         </div>        
     </div>
@@ -146,10 +161,10 @@
                     <div class="col-md-6 segment-one">
                         <h4>Desarrolladores: </h4>
                         <p>Andres Mateo Nariño Rodríguez</p>
-                        <p>Juan Sebastian Martinez Zabala</p>
+                        <p>John Sebastian Martinez Zabala</p>
                         <p>Juan Sebastian Mancera</p>
                     </div>
-                    <div class="col-md-6 segment two">
+                    <div class="col-md-6 segment-two">
                         <h4>Contacto: </h4>
                         <p>narinomateo2119@gmail.com</p>
                     </div>

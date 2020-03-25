@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="icon" href=" {{ url_for('static', filename = 'image/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/styles.css') }}">
     <title>Resultados</title>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Resultados</h1>
+            <h2>Proyecto final - Modelos de programación 2.</h2>
         </div>
     </header>
     <div class="container">
@@ -78,10 +79,12 @@
         </div>
         <!--FIFTH ROW-->
         <div class="row final-row">
-            <div class="col-md-12 color3">
+            <div class="col-md-6 color3 segment-one">
                 <form action="/ML.html" method="POST" enctype="multipart/form-data">
                     <button type="submit" class="btn btn-lg btn-warning"> Aplicar machine learnig</button>
                 </form>
+            </div>
+            <div class="col-md-6 color3 segment-tow">
                 <form action="/index.html" , method="POST" , enctype="multipart/form-data">
                     <button type="submit" class="btn btn-lg btn-warning"> regresar al inicio</button>
                 </form>
@@ -96,7 +99,7 @@
                     <div class="col-md-6 segment-one">
                         <h4>Desarrolladores: </h4>
                         <p>Andres Mateo Nariño Rodríguez</p>
-                        <p>Juan Sebastian Martinez Zabala</p>
+                        <p>John Sebastian Martinez Zabala</p>
                         <p>Juan Sebastian Mancera</p>
                     </div>
                     <div class="col-md-6 segment two">
